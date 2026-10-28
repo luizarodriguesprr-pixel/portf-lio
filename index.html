@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Portfólio Luiza Rodrigues 2026</title>
+<meta name="description" content="Portfólio de Luiza Rodrigues, UGC Creator de beleza e lifestyle em Goiânia, GO.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+/* Mesmo visual do portfólio original: marsala no destaque, letras em marrom café e linhas finas em dourado champagne. */
+:root{
+  --porcelana:#F7F4F2; --branco:#FFFFFF; --tinta:#2E211D; --tinta-suave:#6A574F;
+  --manteiga:#FBF1CD; --manteiga-forte:#F5E4A8; --dourado:#C9AC74; --dourado-escuro:#A5854A;
+  --rosa:#A93A63; --rosa-claro:#F6E3E8; --linha:#E2D8D4;
+  --titulo:"Bricolage Grotesque","Arial Narrow",system-ui,sans-serif;
+  --texto:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--porcelana);color:var(--tinta);font-family:var(--texto);font-size:1rem;line-height:1.6}
+img{max-width:100%;height:auto;display:block}
+[hidden]{display:none!important}
+a{color:inherit}
+p{margin:0}
+:focus-visible{outline:3px solid var(--rosa);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin-inline:auto;padding-inline:20px}
+section{padding-block:56px;scroll-margin-top:64px}
+h1,h2,h3{font-family:var(--titulo);font-weight:700;margin:0;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:clamp(2rem,8vw,3.4rem);line-height:1;margin-bottom:24px}
+h2::after{content:"";display:block;width:44px;height:1.5px;background:var(--dourado);margin-top:14px}
+.cabeca h2::after{margin-top:12px}
+h3{font-size:1.15rem;line-height:1.2}
+.sobrelinha{font-size:.78rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--rosa)}
+
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--porcelana);border-bottom:1px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;gap:12px;min-height:56px}
+.marca{font-family:var(--titulo);font-weight:700;text-decoration:none;white-space:nowrap}
+.menu{display:flex;gap:2px;overflow-x:auto;margin-left:auto;min-width:0;scrollbar-width:none}
+.menu::-webkit-scrollbar{display:none}
+.menu a{text-decoration:none;font-size:.9rem;padding:8px 10px;border-radius:99px;white-space:nowrap}
+.menu a:hover{background:var(--rosa-claro)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 22px;border-radius:99px;border:1.5px solid var(--tinta);background:transparent;color:var(--tinta);font:600 1rem var(--texto);text-decoration:none;cursor:pointer}
+.btn.cheio{background:var(--rosa);border-color:var(--rosa);color:var(--branco)}
+.btn:hover{background:var(--tinta);border-color:var(--tinta);color:var(--branco)}
+
+/* Capa */
+.abre{padding-block:28px 8px}
+.abre .quem{display:flex;align-items:center;gap:16px}
+.abre .quem img{width:84px;height:84px;border-radius:50%;object-fit:cover;flex:none;border:2px solid var(--porcelana);outline:1.5px solid var(--dourado)}
+.abre h1{font-size:clamp(2.6rem,12vw,5.5rem);line-height:.9;margin-top:18px}
+.abre .frase{margin-top:16px;font-size:1.1rem;max-width:38ch;color:var(--tinta-suave)}
+.acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+
+/* Vídeos em trilho */
+.videos{padding-top:24px}
+.cabeca{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px}
+.cabeca h2{margin:0}
+.setas{display:flex;gap:8px}
+.setas button{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--dourado);background:var(--branco);color:var(--tinta);font-size:1.2rem;cursor:pointer}
+.setas button:hover{background:var(--manteiga)}
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.filtro{min-height:44px;padding:8px 16px;border-radius:99px;border:1px solid var(--dourado);background:var(--branco);color:var(--tinta);font:500 .92rem var(--texto);cursor:pointer}
+.filtro[aria-pressed="true"]{background:var(--tinta);color:var(--branco);border-color:var(--tinta)}
+.contagem{font-size:.9rem;color:var(--tinta-suave);margin-bottom:14px}
+.trilho{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:20px;margin-inline:-20px;padding:0 20px 12px;scrollbar-width:thin}
+.vcard{flex:0 0 min(74vw,280px);scroll-snap-align:start;min-width:0}
+.vquadro{position:relative;aspect-ratio:9/16;background:var(--tinta);border-radius:18px;overflow:hidden}
+.vquadro video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--tinta)}
+.vplay{position:absolute;inset:0;width:100%;border:0;padding:0;cursor:pointer;background:transparent;display:grid;place-items:center}
+.vplay span{width:64px;height:64px;border-radius:50%;background:var(--branco);display:grid;place-items:center}
+.vplay svg{width:22px;height:22px;margin-left:4px;fill:var(--rosa)}
+.vplay:hover span{background:var(--rosa-claro)}
+.vcard h3{margin-top:12px}
+.vmeta{font-size:.88rem;color:var(--tinta-suave);margin-top:2px}
+.shop{display:inline-block;margin-top:8px;background:var(--rosa-claro);color:var(--rosa);border-radius:99px;padding:2px 10px;font-size:.75rem;font-weight:600}
+
+/* Sobre */
+.sobre{padding-top:40px}
+.sobre .wrap{display:grid;gap:28px;align-items:center}
+.sobre img{border-radius:18px;border:1px solid var(--dourado);aspect-ratio:4/5;object-fit:cover;width:100%;max-width:380px}
+.destaque{font-family:var(--titulo);font-weight:500;font-size:clamp(1.7rem,6.5vw,2.6rem);line-height:1.08;letter-spacing:-.02em;margin:10px 0 18px;text-wrap:balance}
+.destaque b{color:var(--rosa);font-weight:700}
+.sobre p.t{max-width:58ch}
+.sobre p.t+p.t{margin-top:12px}
+
+/* Fotos */
+.fotos{columns:2;column-gap:10px}
+.fotos button{display:block;width:100%;margin:0 0 10px;padding:0;border:0;background:var(--branco);border-radius:14px;overflow:hidden;cursor:zoom-in;break-inside:avoid}
+.fotos img{width:100%}
+dialog#ampliar{border:0;padding:0;background:transparent;max-width:100vw;max-height:100vh;width:100%;height:100%;color:var(--branco)}
+dialog#ampliar::backdrop{background:rgba(28,14,18,.93)}
+.lb{display:grid;grid-template-rows:auto 1fr auto;height:100%;padding:12px;gap:8px}
+.lb .img{min-height:0;display:grid;place-items:center}
+.lb img{max-width:100%;max-height:100%;object-fit:contain}
+.lb .barra{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.lb button{min-width:48px;min-height:48px;border-radius:99px;border:1.5px solid var(--branco);background:transparent;color:var(--branco);font:600 1rem var(--texto);cursor:pointer;padding:0 16px}
+.lb p{text-align:center}
+
+/* Como trabalho */
+.como{background:var(--branco)}
+.duas{display:grid;gap:40px}
+.lista{list-style:none;margin:10px 0 0;padding:0}
+.lista li{padding:14px 0;border-top:1px solid var(--linha);display:grid;gap:2px}
+.lista li p{color:var(--tinta-suave)}
+ol.lista{counter-reset:p}
+ol.lista li{grid-template-columns:2.2rem 1fr;column-gap:8px}
+ol.lista li::before{counter-increment:p;content:counter(p);font-family:var(--titulo);font-weight:700;font-size:1.5rem;line-height:1;color:var(--rosa);grid-row:span 2}
+.prazo{grid-column:2;margin-top:10px;background:var(--manteiga-forte);border-left:3px solid var(--rosa);border-radius:10px;padding:10px 12px;font-weight:600;color:var(--tinta)!important}
+.infos{margin-top:36px;display:grid;gap:14px}
+.info{border-radius:18px;padding:22px 20px;border:1px solid var(--dourado);display:grid;gap:14px;align-content:start;min-width:0}
+.info.entrega{background:var(--manteiga)}
+.info.equip{background:var(--porcelana)}
+.info h3{font-size:1.5rem;line-height:1.1}
+.info .ic{width:44px;height:44px;border-radius:50%;border:1px solid var(--dourado);background:var(--branco);display:grid;place-items:center;flex:none}
+.info svg{width:22px;height:22px;fill:none;stroke:var(--dourado-escuro);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.info .cab{display:flex;align-items:center;gap:12px}
+.info.entrega p{font-size:1.05rem;max-width:32ch}
+.equipos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 20px}
+.equipos li{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--dourado);font-weight:500;min-width:0}
+.equipos li svg{flex:none}
+
+/* Contato */
+.contato{background:var(--branco)}
+.contato .wrap{display:grid;gap:24px;max-width:680px}
+.contato img{max-width:200px;width:100%;margin-inline:auto}
+.contato p.convite{font-size:1.1rem;max-width:44ch;color:var(--tinta-suave)}
+.canais{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:20px}
+.dados{margin-top:18px;display:grid;gap:8px}
+.dados div{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+.dados .valor{user-select:all;overflow-wrap:anywhere;min-width:0}
+.copiar{min-height:36px;padding:4px 12px;border-radius:99px;border:1px solid var(--linha);background:var(--porcelana);color:var(--tinta);font:500 .82rem var(--texto);cursor:pointer}
+footer{background:var(--branco);border-top:1px solid var(--dourado);text-align:center;font-size:.85rem;color:var(--tinta-suave);padding:20px}
+
+@media (min-width:720px){
+  section{padding-block:80px}
+  .abre{padding-block:48px 8px}
+  .sobre .wrap{grid-template-columns:380px 1fr;gap:56px}
+  .fotos{columns:4}
+  .duas{grid-template-columns:1fr 1fr;gap:56px}
+  .infos{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr)}
+  .info{padding:28px}
+  .canais{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#inicio">Luiza Rodrigues</a>
+    <nav class="menu" aria-label="Seções do site">
+      <a href="#sobre">Sobre</a><a href="#videos">Vídeos</a><a href="#fotos">Fotos</a><a href="#como">Como trabalho</a><a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- CAPA -->
+<section class="abre" id="inicio">
+  <div class="wrap">
+    <div class="quem">
+      <img src="media/foto-retrato.jpg" width="600" height="600" alt="Retrato de Luiza Rodrigues sorrindo">
+      <p class="sobrelinha">UGC Creator | Beleza e Lifestyle<br>Goiânia, GO</p>
+    </div>
+    <h1>Luiza Rodrigues</h1>
+    <p class="frase">Vídeos e fotos de haircare e skincare que mostram o produto na rotina real, de um jeito leve e verdadeiro.</p>
+    <div class="acoes">
+      <a class="btn cheio" href="#videos">Ver meu portfólio</a>
+      <a class="btn" href="#contato">Vamos trabalhar juntos?</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="wrap">
+    <img src="media/foto-sobre-sorriso.jpg" width="1200" height="1500" loading="lazy" alt="Retrato de Luiza sorrindo, com o cabelo preso e blusa branca de renda">
+    <div>
+      <p class="sobrelinha">Oi! Eu sou a Luiza :)</p>
+      <p class="destaque">Anos de vendas me ensinaram que antes de vender é preciso <b>entender pessoas</b>.</p>
+      <p class="t">Sou criadora UGC de Goiânia, Goiás, comunicativa por natureza e apaixonada por transformar produtos em conteúdos que aproximam marcas de pessoas. Meu foco é beleza e lifestyle, principalmente cuidados capilares e skincare.</p>
+      <p class="t">Minha escola de vendas foi um balcão de autopeças. Atender quem chega sem saber nem o nome da peça me ensinou a ouvir primeiro, explicar sem complicar e passar segurança. Hoje levo isso para cada vídeo, unindo comunicação, criatividade e estratégia para apresentar o produto de forma natural.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VÍDEOS -->
+<section class="videos" id="videos">
+  <div class="wrap">
+    <div class="cabeca">
+      <h2>Vídeos</h2>
+      <div class="setas"><button type="button" id="seta-ant" aria-label="Vídeos anteriores">←</button><button type="button" id="seta-prox" aria-label="Próximos vídeos">→</button></div>
+    </div>
+    <div class="filtros" id="filtros" role="group" aria-label="Filtrar vídeos por categoria"></div>
+    <p class="contagem" id="contagem" aria-live="polite"></p>
+    <div class="trilho" id="lista-videos" tabindex="0" aria-label="Lista de vídeos, deslize para o lado"></div>
+  </div>
+</section>
+
+<!-- FOTOS -->
+<section id="fotos" style="padding-top:8px">
+  <div class="wrap">
+    <h2>Fotografias</h2>
+    <div class="fotos" id="lista-fotos"></div>
+  </div>
+</section>
+<dialog id="ampliar" aria-label="Foto ampliada">
+  <div class="lb">
+    <div class="barra"><span id="lb-pos"></span><button type="button" id="lb-fechar">Fechar</button></div>
+    <div class="img"><img id="lb-img" alt=""></div>
+    <div>
+      <p id="lb-legenda"></p>
+      <div class="barra" style="margin-top:8px"><button type="button" id="lb-ant" aria-label="Foto anterior">←</button><button type="button" id="lb-prox" aria-label="Próxima foto">→</button></div>
+    </div>
+  </div>
+</dialog>
+
+<!-- COMO TRABALHO: formatos, processo e equipamentos -->
+<section class="como" id="como">
+  <div class="wrap">
+    <h2>Como é trabalhar comigo</h2>
+    <div class="duas">
+      <div>
+        <p class="sobrelinha">Formatos que eu crio</p>
+        <ul class="lista">
+          <li><h3>Storytelling</h3><p>Histórias que conectam o produto com a rotina.</p></li>
+          <li><h3>Review e demonstração</h3><p>Experiência de uso, benefícios e detalhes do produto.</p></li>
+          <li><h3>ASMR e sensorial</h3><p>Sons, texturas e detalhes em destaque.</p></li>
+          <li><h3>Unboxing</h3><p>Descoberta do produto e primeiras impressões.</p></li>
+        </ul>
+      </div>
+      <div>
+        <p class="sobrelinha">Do briefing à entrega</p>
+        <ol class="lista">
+          <li><h3>Briefing e alinhamento</h3><p>Entendo a marca, o produto, o público e o objetivo.</p></li>
+          <li><h3>Pesquisa e estratégia</h3><p>Análise de referências e abordagem.</p></li>
+          <li><h3>Roteiro e produção</h3><p>Planejo e gravo as cenas com o meu equipamento.</p></li>
+          <li><h3>Edição e entrega</h3><p>Edito, apresento para aprovação e entrego os arquivos finais.</p><p class="prazo">Em até 5 dias úteis, tudo no Google Drive, pronto para postar ou anunciar.</p></li>
+        </ol>
+      </div>
+    </div>
+    <div class="infos">
+      <div class="info entrega">
+        <div class="cab"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><h3>Como você recebe</h3></div>
+        <p>Arquivos finais organizados em pastas pelo Google Drive.</p>
+      </div>
+      <div class="info equip">
+        <div class="cab"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h3l1.5-2.5h7L17 8.5h3a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.2"/></svg></span><h3>Meus equipamentos</h3></div>
+        <ul class="equipos">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 5.5h2"/></svg>iPhone 17 Pro Max</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3M9 21h6"/></svg>Microfone Hollyland Lark M2</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="2.5" width="15" height="19" rx="2"/><path d="M11 18.5h2"/></svg>iPad 10ª geração</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="5" width="15" height="10.5" rx="1.5"/><path d="M2.5 19h19"/></svg>Lenovo S145</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.5" width="6" height="5" rx="1"/><path d="M12 7.5V12M12 12l-6 9.5M12 12l6 9.5M12 12v9.5"/></svg>Tripé</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"/></svg>Iluminação</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+  <div class="wrap">
+    <img src="media/luiza-sticker.webp" width="1135" height="1386" loading="lazy" alt="Luiza sorrindo e piscando para a câmera">
+    <div>
+      <h2>Vamos trabalhar juntos?</h2>
+      <p class="convite">Me conta sobre a sua marca e o que você tem em mente. Quero entender o projeto para a gente criar algo que faça sentido de verdade.</p>
+      <div class="canais" id="canais"></div>
+      <div class="dados" id="dados"></div>
+    </div>
+  </div>
+</section>
+<footer>Luiza Rodrigues · UGC Creator · Goiânia, GO</footer>
+
+<script>
+/* =====================================================================
+   PARA EDITAR O SITE: mude só as listas abaixo.
+   Os arquivos de vídeo, capa e foto ficam na pasta "media".
+   ===================================================================== */
+const PERFIL = "@byluizarodrigues_";
+
+const CONTATO = {
+  instagram: "https://www.instagram.com/byluizarodrigues_/",
+  tiktok:    "https://www.tiktok.com/@byluizarodrigues_",
+  email:     "contato.luizarodriguesp@gmail.com",
+  telefone:  "(62) 98255-5597",
+  whatsapp:  "5562982555597"            // só números: 55 + DDD + número
+};
+
+const CATEGORIAS = {
+  haircare:  "Haircare",
+  skincare:  "Skincare",
+  casa:      "Home e Decor",
+  tech:      "Tecnologia para criação de conteúdo"
+};
+
+/* tiktokShop: true mostra a etiqueta "Conteúdo para TikTok Shop". */
+const VIDEOS = [
+  { titulo: "Linha Genesis, Kérastase", categoria: "haircare",  formato: "Demonstração e ASMR", arquivo: "media/kerastase-genesis.mp4",  capa: "media/kerastase-genesis.jpg" },
+  { titulo: "Hidratante CeraVe",        categoria: "skincare",  formato: "Review",              arquivo: "media/cerave-hidratante.mp4",  capa: "media/cerave-hidratante.jpg" },
+  { titulo: "Kit Cronograma, Ybera Paris", categoria: "haircare", formato: "Review e depoimento", arquivo: "media/ybera-cronograma.mp4",   capa: "media/ybera-cronograma.jpg", tiktokShop: true },
+  { titulo: "Hidratante Eucerin",       categoria: "skincare",  formato: "Review e depoimento", arquivo: "media/eucerin-aquaphor.mp4",   capa: "media/eucerin-aquaphor.jpg" },
+  { titulo: "Lente macro Ulanzi",       categoria: "tech",      formato: "Unboxing",            arquivo: "media/ulanzi-lente-macro.mp4", capa: "media/ulanzi-lente-macro.jpg", tiktokShop: true },
+  { titulo: "Microfone Hollyland Lark M2", categoria: "tech",   formato: "Unboxing",            arquivo: "media/hollyland-lark-m2.mp4",  capa: "media/hollyland-lark-m2.jpg" },
+  { titulo: "Kit Chá Branco, Coala",   categoria: "casa",      formato: "Demonstração na rotina", arquivo: "media/coala-kit-cha-branco.mp4", capa: "media/coala-kit-cha-branco.jpg", tiktokShop: true },
+  { titulo: "Carregador Portátil, Basike", categoria: "tech",  formato: "Review e demonstração", arquivo: "media/basike-carregador.mp4", capa: "media/basike-carregador.jpg", tiktokShop: true }
+];
+
+const FOTOS = [
+  { arquivo: "media/foto-episol-glow.webp", legenda: "Episol Glow FPS 60, Mantecorp Skincare" },
+  { arquivo: "media/foto-centella.webp",    legenda: "Madagascar Centella Ampoule, SKIN1004" },
+  { arquivo: "media/foto-cerave.webp",      legenda: "Creme Hidratante CeraVe" },
+  { arquivo: "media/foto-ybera.webp",       legenda: "Cronograma Capilar, Ybera" },
+  { arquivo: "media/foto-fashion-gold.webp", legenda: "Shampoo e Máscara Pós-Progressiva, Fashion Gold" },
+  { arquivo: "media/foto-maybelline.webp",  legenda: "Máscara de cílios Sky High, Maybelline" },
+  { arquivo: "media/foto-celimax.webp",     legenda: "Retinal Shot, Celimax" },
+  { arquivo: "media/foto-cafe.webp",        legenda: "Café e caderno" },
+  { arquivo: "media/foto-eucerin.webp",     legenda: "Aquaphor, Eucerin" }
+];
+/* ============================ fim da parte editável ============================ */
+
+const $ = (s) => document.querySelector(s);
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const ext = 'target="_blank" rel="noopener"';
+const zap = (msg) => "https://wa.me/" + CONTATO.whatsapp + (msg ? "?text=" + encodeURIComponent(msg) : "");
+
+/* Vídeos */
+const lista = $("#lista-videos");
+lista.innerHTML = VIDEOS.map((v, i) =>
+  `<article class="vcard" data-cat="${v.categoria}"><div class="vquadro"><video id="video-${i}" playsinline preload="none" poster="${esc(v.capa)}" data-src="${esc(v.arquivo)}" aria-label="${esc(v.titulo)}"></video><button type="button" class="vplay" aria-label="Reproduzir vídeo: ${esc(v.titulo)}"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z"/></svg></span></button></div><h3>${esc(v.titulo)}</h3><p class="vmeta">${esc(CATEGORIAS[v.categoria])} · ${esc(v.formato)}</p>${v.tiktokShop ? '<span class="shop">Conteúdo para TikTok Shop</span>' : ""}</article>`
+).join("");
+
+const todosVideos = [...lista.querySelectorAll("video")];
+lista.querySelectorAll(".vplay").forEach((botao) => {
+  const video = botao.previousElementSibling;
+  botao.addEventListener("click", () => {
+    if (!video.getAttribute("src")) video.src = video.dataset.src;   // só carrega ao tocar
+    video.controls = true; botao.hidden = true;
+    video.play().catch(() => {});
+  });
+  video.addEventListener("play", () => todosVideos.forEach((o) => { if (o !== video) o.pause(); }));
+  video.addEventListener("ended", () => { video.controls = false; video.load(); botao.hidden = false; });
+});
+/* pausa o vídeo que saiu da tela ao deslizar */
+if ("IntersectionObserver" in window) {
+  const obs = new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting && !document.fullscreenElement) e.target.pause(); }), { threshold: 0.2 });
+  todosVideos.forEach((v) => obs.observe(v));
+}
+const passo = () => (lista.querySelector(".vcard:not([hidden])")?.offsetWidth || 280) + 14;
+$("#seta-ant").addEventListener("click", () => lista.scrollBy({ left: -passo(), behavior: "smooth" }));
+$("#seta-prox").addEventListener("click", () => lista.scrollBy({ left: passo(), behavior: "smooth" }));
+
+const filtros = $("#filtros");
+filtros.innerHTML = [["todos", "Todos"], ...Object.keys(CATEGORIAS).map((c) => [c, CATEGORIAS[c]])]
+  .map(([c, n], i) => `<button type="button" class="filtro" data-cat="${c}" aria-pressed="${i === 0}">${esc(n)}</button>`).join("");
+function filtrar(cat) {
+  let n = 0;
+  lista.querySelectorAll(".vcard").forEach((card) => {
+    const mostra = cat === "todos" || card.dataset.cat === cat;
+    card.hidden = !mostra;
+    if (!mostra) card.querySelector("video").pause(); else n++;
+  });
+  lista.scrollLeft = 0;
+  filtros.querySelectorAll(".filtro").forEach((b) => b.setAttribute("aria-pressed", b.dataset.cat === cat));
+  $("#contagem").textContent = (n === 1 ? "1 vídeo" : n + " vídeos") + ". Deslize para o lado para ver todos.";
+}
+filtros.addEventListener("click", (e) => { const b = e.target.closest(".filtro"); if (b) filtrar(b.dataset.cat); });
+filtrar("todos");
+
+/* Fotos e ampliação */
+const galeria = $("#lista-fotos");
+galeria.innerHTML = FOTOS.map((f, i) => `<button type="button" data-i="${i}" aria-label="Ampliar foto: ${esc(f.legenda)}"><img src="${esc(f.arquivo)}" loading="lazy" alt="${esc(f.legenda)}"></button>`).join("");
+const dlg = $("#ampliar"); let atual = 0, origem = null;
+function mostrar(i) {
+  atual = (i + FOTOS.length) % FOTOS.length;
+  $("#lb-img").src = FOTOS[atual].arquivo; $("#lb-img").alt = FOTOS[atual].legenda;
+  $("#lb-legenda").textContent = FOTOS[atual].legenda;
+  $("#lb-pos").textContent = (atual + 1) + " de " + FOTOS.length;
+}
+galeria.addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; origem = b; mostrar(+b.dataset.i); dlg.showModal(); });
+$("#lb-fechar").addEventListener("click", () => dlg.close());
+$("#lb-ant").addEventListener("click", () => mostrar(atual - 1));
+$("#lb-prox").addEventListener("click", () => mostrar(atual + 1));
+dlg.addEventListener("click", (e) => { if (e.target === dlg || e.target.classList.contains("img")) dlg.close(); });
+dlg.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") mostrar(atual - 1); if (e.key === "ArrowRight") mostrar(atual + 1); });
+dlg.addEventListener("close", () => { if (origem) origem.focus(); });
+
+/* Contato */
+$("#canais").innerHTML =
+  `<a class="btn cheio" ${ext} href="${zap("Oi Luiza, vi seu portfólio e quero conversar sobre um projeto.")}">WhatsApp</a>` +
+  `<a class="btn" ${ext} href="${CONTATO.instagram}">Instagram</a>` +
+  `<a class="btn" ${ext} href="${CONTATO.tiktok}">TikTok</a>` +
+  `<a class="btn" href="mailto:${CONTATO.email}">E-mail</a>`;
+$("#dados").innerHTML =
+  `<div><span class="valor">${esc(CONTATO.email)}</span><button type="button" class="copiar" data-copiar="${esc(CONTATO.email)}">Copiar e-mail</button></div>` +
+  `<div><span class="valor">${esc(CONTATO.telefone)}</span><button type="button" class="copiar" data-copiar="${esc(CONTATO.telefone)}">Copiar telefone</button></div>` +
+  `<div><span>Instagram e TikTok: ${esc(PERFIL)}</span></div>`;
+$("#dados").addEventListener("click", (e) => {
+  const b = e.target.closest(".copiar"); if (!b) return;
+  const ok = () => { const t = b.textContent; b.textContent = "Copiado"; setTimeout(() => { b.textContent = t; }, 1600); };
+  const manual = () => { const r = document.createRange(); r.selectNodeContents(b.previousElementSibling); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try { navigator.clipboard.writeText(b.dataset.copiar).then(ok, manual); } catch (_) { manual(); }
+});
+</script>
+</body>
+</html>
