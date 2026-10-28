@@ -55,16 +55,27 @@ h3{font-size:1.15rem;line-height:1.2}
 
 /* Vídeos em trilho */
 .videos{padding-top:24px}
-.cabeca{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:16px}
-.cabeca h2{margin:0}
-.setas{display:flex;gap:8px}
-.setas button{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--dourado);background:var(--branco);color:var(--tinta);font-size:1.2rem;cursor:pointer}
-.setas button:hover{background:var(--manteiga)}
-.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-.filtro{min-height:44px;padding:8px 16px;border-radius:99px;border:1px solid var(--dourado);background:var(--branco);color:var(--tinta);font:500 .92rem var(--texto);cursor:pointer}
+.videos h2{margin-bottom:18px}
+.intro-videos{margin-bottom:18px}
+.intro-videos h3{font-size:1.2rem}
+.intro-videos p{margin-top:4px;font-size:.95rem;color:var(--tinta-suave);max-width:52ch}
+/* No celular os filtros deslizam para o lado; no computador quebram linha */
+.filtros{display:flex;gap:8px;overflow-x:auto;margin:0 -20px 18px;padding:2px 20px 6px;scroll-padding-inline:20px;scrollbar-width:none}
+.filtros::-webkit-scrollbar{display:none}
+.filtro{flex:none;white-space:nowrap;min-height:44px;padding:8px 16px;border-radius:99px;border:1px solid var(--dourado);background:var(--branco);color:var(--tinta);font:500 .92rem var(--texto);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.filtro:hover{border-color:var(--dourado-escuro)}
 .filtro[aria-pressed="true"]{background:var(--tinta);color:var(--branco);border-color:var(--tinta)}
-.contagem{font-size:.9rem;color:var(--tinta-suave);margin-bottom:14px}
-.trilho{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:20px;margin-inline:-20px;padding:0 20px 12px;scrollbar-width:thin}
+.carrossel{position:relative}
+.trilho{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:20px;scroll-behavior:smooth;overscroll-behavior-x:contain;margin-inline:-20px;padding:0 20px 12px;scrollbar-width:thin}
+.trilho.arrastando{scroll-snap-type:none;scroll-behavior:auto;cursor:grabbing;user-select:none}
+/* Setas discretas, centralizadas na altura da miniatura */
+.seta{position:absolute;z-index:2;top:calc(min(74vw,280px) * .8889);transform:translateY(-50%);width:38px;height:38px;padding:0;border-radius:50%;border:1px solid var(--dourado);background:rgba(247,244,242,.9);color:var(--tinta);display:grid;place-items:center;cursor:pointer;box-shadow:0 1px 6px rgba(46,33,29,.12);transition:opacity .25s,background .2s}
+.seta svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.seta:hover{background:var(--manteiga)}
+.seta.ant{left:-6px}
+.seta.prox{right:-6px}
+.seta[disabled]{opacity:0;pointer-events:none}
+.vazio{border:1.5px dashed var(--linha);border-radius:18px;background:var(--branco);padding:40px 20px;text-align:center;color:var(--tinta-suave)}
 .vcard{flex:0 0 min(74vw,280px);scroll-snap-align:start;min-width:0}
 .vquadro{position:relative;aspect-ratio:9/16;background:var(--tinta);border-radius:18px;overflow:hidden}
 .vquadro video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--tinta)}
@@ -137,6 +148,9 @@ footer{background:var(--branco);border-top:1px solid var(--dourado);text-align:c
   section{padding-block:80px}
   .abre{padding-block:48px 8px}
   .sobre .wrap{grid-template-columns:380px 1fr;gap:56px}
+  .filtros{flex-wrap:wrap;overflow:visible;margin-inline:0;padding:0}
+  .seta.ant{left:-19px}
+  .seta.prox{right:-19px}
   .fotos{columns:4}
   .duas{grid-template-columns:1fr 1fr;gap:56px}
   .infos{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr)}
@@ -190,13 +204,18 @@ footer{background:var(--branco);border-top:1px solid var(--dourado);text-align:c
 <!-- VÍDEOS -->
 <section class="videos" id="videos">
   <div class="wrap">
-    <div class="cabeca">
-      <h2>Vídeos</h2>
-      <div class="setas"><button type="button" id="seta-ant" aria-label="Vídeos anteriores">←</button><button type="button" id="seta-prox" aria-label="Próximos vídeos">→</button></div>
+    <h2>Vídeos</h2>
+    <div class="intro-videos">
+      <h3>Explore meus criativos</h3>
+      <p>Conteúdos que combinam criatividade, autenticidade e estratégia. Selecione um nicho ou deslize para explorar.</p>
     </div>
     <div class="filtros" id="filtros" role="group" aria-label="Filtrar vídeos por categoria"></div>
-    <p class="contagem" id="contagem" aria-live="polite"></p>
-    <div class="trilho" id="lista-videos" tabindex="0" aria-label="Lista de vídeos, deslize para o lado"></div>
+    <div class="carrossel">
+      <button type="button" class="seta ant" id="seta-ant" aria-label="Vídeos anteriores"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="trilho" id="lista-videos" tabindex="0" aria-label="Lista de vídeos, deslize para o lado"></div>
+      <button type="button" class="seta prox" id="seta-prox" aria-label="Próximos vídeos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <p class="vazio" id="vazio" hidden>Vídeos desta categoria em breve.</p>
   </div>
 </section>
 
@@ -295,19 +314,22 @@ const CONTATO = {
 const CATEGORIAS = {
   haircare:  "Haircare",
   skincare:  "Skincare",
-  casa:      "Home e Decor",
-  tech:      "Tecnologia para criação de conteúdo"
+  lifestyle: "Lifestyle & Bem-estar",
+  casa:      "Casa & Decoração",
+  tech:      "Tecnologia & Acessórios"
 };
 
-/* tiktokShop: true mostra a etiqueta "Conteúdo para TikTok Shop". */
+/* A ordem da lista é a ordem do carrossel. Os 4 primeiros mostram habilidades diferentes:
+   1. gancho forte  2. demonstração/ASMR  3. storytelling  4. review para a câmera.
+   tiktokShop: true mostra a etiqueta "Conteúdo para TikTok Shop". */
 const VIDEOS = [
+  { titulo: "Kit Chá Branco, Coala",   categoria: "casa",      formato: "Demonstração na rotina", arquivo: "media/coala-kit-cha-branco.mp4", capa: "media/coala-kit-cha-branco.jpg", tiktokShop: true },
   { titulo: "Linha Genesis, Kérastase", categoria: "haircare",  formato: "Demonstração e ASMR", arquivo: "media/kerastase-genesis.mp4",  capa: "media/kerastase-genesis.jpg" },
-  { titulo: "Hidratante CeraVe",        categoria: "skincare",  formato: "Review",              arquivo: "media/cerave-hidratante.mp4",  capa: "media/cerave-hidratante.jpg" },
   { titulo: "Kit Cronograma, Ybera Paris", categoria: "haircare", formato: "Review e depoimento", arquivo: "media/ybera-cronograma.mp4",   capa: "media/ybera-cronograma.jpg", tiktokShop: true },
+  { titulo: "Creme Hidratante Corporal, CeraVe", categoria: "skincare", formato: "Review", arquivo: "media/cerave-hidratante.mp4",  capa: "media/cerave-hidratante.jpg" },
   { titulo: "Hidratante Eucerin",       categoria: "skincare",  formato: "Review e depoimento", arquivo: "media/eucerin-aquaphor.mp4",   capa: "media/eucerin-aquaphor.jpg" },
   { titulo: "Lente macro Ulanzi",       categoria: "tech",      formato: "Unboxing",            arquivo: "media/ulanzi-lente-macro.mp4", capa: "media/ulanzi-lente-macro.jpg", tiktokShop: true },
   { titulo: "Microfone Hollyland Lark M2", categoria: "tech",   formato: "Unboxing",            arquivo: "media/hollyland-lark-m2.mp4",  capa: "media/hollyland-lark-m2.jpg" },
-  { titulo: "Kit Chá Branco, Coala",   categoria: "casa",      formato: "Demonstração na rotina", arquivo: "media/coala-kit-cha-branco.mp4", capa: "media/coala-kit-cha-branco.jpg", tiktokShop: true },
   { titulo: "Carregador Portátil, Basike", categoria: "tech",  formato: "Review e demonstração", arquivo: "media/basike-carregador.mp4", capa: "media/basike-carregador.jpg", tiktokShop: true }
 ];
 
@@ -351,9 +373,43 @@ if ("IntersectionObserver" in window) {
   const obs = new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting && !document.fullscreenElement) e.target.pause(); }), { threshold: 0.2 });
   todosVideos.forEach((v) => obs.observe(v));
 }
+/* Setas: andam um vídeo por vez e somem no começo e no fim do carrossel */
+const setaAnt = $("#seta-ant"), setaProx = $("#seta-prox");
 const passo = () => (lista.querySelector(".vcard:not([hidden])")?.offsetWidth || 280) + 14;
-$("#seta-ant").addEventListener("click", () => lista.scrollBy({ left: -passo(), behavior: "smooth" }));
-$("#seta-prox").addEventListener("click", () => lista.scrollBy({ left: passo(), behavior: "smooth" }));
+function atualizarSetas() {
+  setaAnt.disabled = lista.scrollLeft <= 4;
+  setaProx.disabled = lista.scrollLeft + lista.clientWidth >= lista.scrollWidth - 4;
+}
+setaAnt.addEventListener("click", () => lista.scrollBy({ left: -passo(), behavior: "smooth" }));
+setaProx.addEventListener("click", () => lista.scrollBy({ left: passo(), behavior: "smooth" }));
+lista.addEventListener("scroll", atualizarSetas, { passive: true });
+addEventListener("resize", atualizarSetas);
+
+/* Arrastar com o mouse no computador (no celular o toque já desliza) */
+let arrasto = null, arrastou = false;
+lista.addEventListener("pointerdown", (e) => {
+  if (e.pointerType !== "mouse" || e.button !== 0) return;
+  arrasto = { x: e.clientX, inicio: lista.scrollLeft, id: e.pointerId }; arrastou = false;
+});
+lista.addEventListener("pointermove", (e) => {
+  if (!arrasto) return;
+  const dx = e.clientX - arrasto.x;
+  if (!arrastou && Math.abs(dx) > 6) { arrastou = true; lista.classList.add("arrastando"); lista.setPointerCapture(arrasto.id); }
+  if (arrastou) lista.scrollLeft = arrasto.inicio - dx;
+});
+const soltar = () => {
+  if (!arrasto) return;
+  arrasto = null;
+  if (arrastou) {   // volta o encaixe suave no vídeo mais próximo
+    const alvo = Math.round(lista.scrollLeft / passo()) * passo();
+    lista.classList.remove("arrastando");
+    lista.scrollTo({ left: alvo, behavior: "smooth" });
+  }
+};
+lista.addEventListener("pointerup", soltar);
+lista.addEventListener("pointercancel", soltar);
+lista.addEventListener("click", (e) => { if (arrastou) { e.stopPropagation(); e.preventDefault(); arrastou = false; } }, true);
+lista.addEventListener("dragstart", (e) => e.preventDefault());
 
 const filtros = $("#filtros");
 filtros.innerHTML = [["todos", "Todos"], ...Object.keys(CATEGORIAS).map((c) => [c, CATEGORIAS[c]])]
@@ -365,9 +421,11 @@ function filtrar(cat) {
     card.hidden = !mostra;
     if (!mostra) card.querySelector("video").pause(); else n++;
   });
-  lista.scrollLeft = 0;
+  lista.scrollTo({ left: 0, behavior: "instant" });
+  lista.parentElement.hidden = n === 0;
+  $("#vazio").hidden = n !== 0;
   filtros.querySelectorAll(".filtro").forEach((b) => b.setAttribute("aria-pressed", b.dataset.cat === cat));
-  $("#contagem").textContent = (n === 1 ? "1 vídeo" : n + " vídeos") + ". Deslize para o lado para ver todos.";
+  atualizarSetas();
 }
 filtros.addEventListener("click", (e) => { const b = e.target.closest(".filtro"); if (b) filtrar(b.dataset.cat); });
 filtrar("todos");
